@@ -13,6 +13,11 @@ def get():
 def post():
     return Response(json.dumps({'Output': 'Hello World1'}), mimetype='application/json', status=200)
 
+
+@application.route('/analyzeTranscript', methods=['GET'])
+def fetchAnswer(question: str):
+    return "This is not a Question"
+
 if __name__ == '__main__':
     default_port = "80"
     default_host = "0.0.0.0"
