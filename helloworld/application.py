@@ -1,9 +1,7 @@
 #!flask/bin/python
 import json
-from flask import Flask, Response, request
+from flask import Flask, Response
 import optparse
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import torch
 
 application = Flask(__name__)
 
@@ -13,39 +11,7 @@ def get():
 
 @application.route('/', methods=['POST'])
 def post():
-    return Response(json.dumps({'Output': 'Hello World'}), mimetype='application/json', status=200)
-
-@application.route('/analyzeTranscript', methods=['GET'])
-def fetchAnswer():
-    question = request.args.get('question')
-    prediction = email_classifier(question)
-    if prediction == "LABEL_1":
-        print("This is a Question")
-        return "This is a Question"
-    else:
-        print("This is not a Question")
-        return "This is not a Question"
-
-def email_classifier(text):
-    """
-    Tokenizes a given sentence and returns the predicted class. 
-    
-    Returns:
-    LABEL_0 --> sentence is predicted as a statement
-    LABEL_1 --> sentence is predicted as a question
-    """
-    tokenizer = AutoTokenizer.from_pretrained(
-        "shahrukhx01/question-vs-statement-classifier")
-    model = AutoModelForSequenceClassification.from_pretrained(
-        "shahrukhx01/question-vs-statement-classifier")
-
-    inputs = tokenizer(f"{text}", return_tensors="pt")
-
-    with torch.no_grad():
-        logits = model(**inputs).logits
-
-    predicted_class_id = logits.argmax().item()
-    return model.config.id2label[predicted_class_id]
+    return Response(json.dumps({'Output': 'Hello World1'}), mimetype='application/json', status=200)
 
 if __name__ == '__main__':
     default_port = "80"
