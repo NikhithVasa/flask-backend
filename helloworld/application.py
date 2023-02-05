@@ -15,7 +15,7 @@ def post():
 
 
 @application.route('/analyzeTranscript', methods=['GET'])
-def fetchAnswer(question: str):
+def fetchAnswer():
     return "This is not a Question"
 
 if __name__ == '__main__':
