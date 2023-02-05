@@ -1,0 +1,4 @@
+build/*
+.eggs/*
+helloworld.egg-info/*
+dist/*
